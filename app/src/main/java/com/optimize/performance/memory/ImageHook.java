@@ -9,7 +9,8 @@ import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 
 import com.optimize.performance.utils.LogUtils;
-import com.taobao.android.dexposed.XC_MethodHook;
+
+import de.robv.android.xposed.XC_MethodHook;
 
 public class ImageHook extends XC_MethodHook {
 

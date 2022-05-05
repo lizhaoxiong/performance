@@ -35,8 +35,6 @@ import com.optimize.performance.tasks.InitUmengTask;
 import com.optimize.performance.tasks.InitWeexTask;
 import com.optimize.performance.utils.LaunchTimer;
 import com.optimize.performance.utils.LogUtils;
-import com.taobao.android.dexposed.DexposedBridge;
-import com.taobao.android.dexposed.XC_MethodHook;
 import com.taobao.weex.InitConfig;
 import com.taobao.weex.WXSDKEngine;
 import com.tencent.bugly.crashreport.CrashReport;
@@ -51,6 +49,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import cn.jpush.android.api.JPushInterface;
+import de.robv.android.xposed.DexposedBridge;
+import de.robv.android.xposed.XC_MethodHook;
 
 public class PerformanceApp extends Application {
 
@@ -97,14 +97,14 @@ public class PerformanceApp extends Application {
 
         LaunchTimer.startRecord();
         MultiDex.install(this);
-//        DexposedBridge.hookAllConstructors(Thread.class, new XC_MethodHook() {
-//            @Override
-//            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-//                super.afterHookedMethod(param);
-//                Thread thread = (Thread) param.thisObject;
-//                LogUtils.i(thread.getName()+" stack "+Log.getStackTraceString(new Throwable()));
-//            }
-//        });
+        DexposedBridge.hookAllConstructors(Thread.class, new XC_MethodHook() {
+            @Override
+            protected void afterHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
+                super.afterHookedMethod(param);
+                Thread thread = (Thread) param.thisObject;
+                LogUtils.i(thread.getName()+" stack "+Log.getStackTraceString(new Throwable()));
+            }
+        });
     }
 
     @Override

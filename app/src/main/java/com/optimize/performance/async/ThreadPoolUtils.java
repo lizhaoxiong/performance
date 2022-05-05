@@ -29,6 +29,7 @@ public class ThreadPoolUtils {
         }
     };
 
+
     public static ExecutorService getService() {
         return sService;
     }
@@ -41,6 +42,4 @@ public class ThreadPoolUtils {
             return thread;
         }
     });
-
-
 }
