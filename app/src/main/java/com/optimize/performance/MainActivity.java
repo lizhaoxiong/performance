@@ -29,6 +29,7 @@ import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 
 import com.alibaba.fastjson.JSON;
+import com.amap.api.maps.model.MyLocationStyle;
 import com.optimize.performance.adapter.NewsAdapter;
 import com.optimize.performance.adapter.OnFeedShowCallBack;
 import com.optimize.performance.async.ThreadPoolUtils;
@@ -71,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements OnFeedShowCallBac
 
 
     public List<NewsItem> mItems = new ArrayList<>();
+    public List<MyLocationStyle> mLoacationItems = new ArrayList<MyLocationStyle>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,6 +144,11 @@ public class MainActivity extends AppCompatActivity implements OnFeedShowCallBac
         Intent intent = registerReceiver(null, filter);
         LogUtils.i("battery " + intent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1));
 
+        //制造StrickMode，对象数量限制监控
+        for(int i = 0;i<10; i++){
+            MyLocationStyle myLocationStyle = new MyLocationStyle();
+            mLoacationItems.add(myLocationStyle);
+        }
         getNews();
         getFPS();
 

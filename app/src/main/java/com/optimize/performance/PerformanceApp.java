@@ -16,6 +16,7 @@ import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
+import com.amap.api.maps.model.MyLocationStyle;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.stetho.Stetho;
 import com.github.anrwatchdog.ANRWatchDog;
@@ -179,7 +180,7 @@ public class PerformanceApp extends Application {
                     .build());
             StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
                     .detectLeakedSqlLiteObjects()
-                    .setClassInstanceLimit(NewsItem.class, 1)
+                    .setClassInstanceLimit(MyLocationStyle.class, 1)
                     .detectLeakedClosableObjects() //API等级11
                     .penaltyLog()
                     .build());
