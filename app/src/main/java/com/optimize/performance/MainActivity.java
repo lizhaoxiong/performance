@@ -76,6 +76,22 @@ public class MainActivity extends AppCompatActivity implements OnFeedShowCallBac
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //等待锁导致的主线等待卡顿
+        new Thread(){
+            @Override
+            public void run() {
+                synchronized (MainActivity.this){
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }.start();
+
+
+
 
         // 以下代码是为了演示修改任务的名称
         ThreadPoolUtils.getService().execute(new Runnable() {
@@ -152,6 +168,13 @@ public class MainActivity extends AppCompatActivity implements OnFeedShowCallBac
         getNews();
         getFPS();
 
+        //blockcanary卡顿监控
+        try{
+            Thread.currentThread().sleep(2000);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
 
         // 以下代码是为了演示业务不正常场景下的监控
         try {
@@ -166,6 +189,11 @@ public class MainActivity extends AppCompatActivity implements OnFeedShowCallBac
             // 正常，继续执行流程
         } else {
             ExceptionMonitor.monitor("");
+        }
+
+        //等待锁导致的主线等待卡顿
+        synchronized (MainActivity.this){
+            LogUtils.i("");
         }
     }
 

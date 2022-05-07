@@ -86,10 +86,10 @@ dependencies {
     implementation 'com.tencent:mmkv:1.0.17'
 
 
-    compile ('com.aliyun.ams:alicloud-android-httpdns:1.1.7@aar') {
+    implementation('com.aliyun.ams:alicloud-android-httpdns:1.1.7@aar') {
         transitive true
     }
-    provided 'me.ele:lancet-base:1.0.4'
+    compileOnly 'me.ele:lancet-base:1.0.4'
 
     implementation 'com.github.markzhai:blockcanary-android:1.5.0'
 
