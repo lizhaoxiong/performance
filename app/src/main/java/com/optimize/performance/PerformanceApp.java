@@ -162,11 +162,11 @@ public class PerformanceApp extends Application {
 //            e.printStackTrace();
 //        }
 
-        BlockCanary.install(this, new AppBlockCanaryContext()).start();
+//        BlockCanary.install(this, new AppBlockCanaryContext()).start();
 
         //initStrictMode();
 
-//        new ANRWatchDog().start();
+        new ANRWatchDog().start();
     }
 
     private void initStrictMode() {
