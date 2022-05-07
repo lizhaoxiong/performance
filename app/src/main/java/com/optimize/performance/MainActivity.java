@@ -77,18 +77,18 @@ public class MainActivity extends AppCompatActivity implements OnFeedShowCallBac
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //等待锁导致的主线等待卡顿
-        new Thread(){
-            @Override
-            public void run() {
-                synchronized (MainActivity.this){
-                    try {
-                        Thread.sleep(5000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }.start();
+//        new Thread(){
+//            @Override
+//            public void run() {
+//                synchronized (MainActivity.this){
+//                    try {
+//                        Thread.sleep(5000);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//        }.start();
 
 
 
@@ -192,9 +192,9 @@ public class MainActivity extends AppCompatActivity implements OnFeedShowCallBac
         }
 
         //等待锁导致的主线等待卡顿
-        synchronized (MainActivity.this){
-            LogUtils.i("");
-        }
+//        synchronized (MainActivity.this){
+//            LogUtils.i("");
+//        }
     }
 
     /**

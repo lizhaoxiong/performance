@@ -1,5 +1,6 @@
 package com.optimize.performance;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -98,14 +99,14 @@ public class PerformanceApp extends Application {
 
         LaunchTimer.startRecord();
         MultiDex.install(this);
-        DexposedBridge.hookAllConstructors(Thread.class, new XC_MethodHook() {
-            @Override
-            protected void afterHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
-                super.afterHookedMethod(param);
-                Thread thread = (Thread) param.thisObject;
-                LogUtils.i(thread.getName()+" stack "+Log.getStackTraceString(new Throwable()));
-            }
-        });
+//        DexposedBridge.hookAllConstructors(Thread.class, new XC_MethodHook() {
+//            @Override
+//            protected void afterHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
+//                super.afterHookedMethod(param);
+//                Thread thread = (Thread) param.thisObject;
+//                LogUtils.i(thread.getName()+" stack "+Log.getStackTraceString(new Throwable()));
+//            }
+//        });
     }
 
     @Override
@@ -148,25 +149,25 @@ public class PerformanceApp extends Application {
 //        });
 
 
-//        try {
-//            DexposedBridge.findAndHookMethod(Class.forName("android.os.BinderProxy"), "transact",
-//                    int.class, Parcel.class, Parcel.class, int.class, new XC_MethodHook() {
-//                        @Override
-//                        protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-//                            LogUtils.i( "BinderProxy beforeHookedMethod " + param.thisObject.getClass().getSimpleName()
-//                                    + "\n" + Log.getStackTraceString(new Throwable()));
-//                            super.beforeHookedMethod(param);
-//                        }
-//                    });
-//        } catch (ClassNotFoundException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            DexposedBridge.findAndHookMethod(Class.forName("android.os.BinderProxy"), "transact",
+                    int.class, Parcel.class, Parcel.class, int.class, new XC_MethodHook() {
+                        @Override
+                        protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                            LogUtils.i( "BinderProxy beforeHookedMethod " + param.thisObject.getClass().getSimpleName()
+                                    + "\n" + Log.getStackTraceString(new Throwable()));
+                            super.beforeHookedMethod(param);
+                        }
+                    });
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
 //        BlockCanary.install(this, new AppBlockCanaryContext()).start();
 
         //initStrictMode();
 
-        new ANRWatchDog().start();
+        //new ANRWatchDog().start();
     }
 
     private void initStrictMode() {
