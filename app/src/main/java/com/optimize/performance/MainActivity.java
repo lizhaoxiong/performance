@@ -107,16 +107,16 @@ public class MainActivity extends AppCompatActivity implements OnFeedShowCallBac
             }
         });
 
-        // 以下代码是为了演示Msg导致的主线程卡顿
+        // 以下代码是为了演示Msg导致的主线程卡顿，NewsAdapter->onBindViewHolder->FeedShow
         new Handler().post(new Runnable() {
             @Override
             public void run() {
                 LogUtils.i("Msg 执行");
-//                try {
-//                    Thread.sleep(1000);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
