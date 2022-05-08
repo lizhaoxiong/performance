@@ -76,6 +76,8 @@ public class MainActivity extends AppCompatActivity implements OnFeedShowCallBac
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.i("MainActivity","100");
+
         //等待锁导致的主线等待卡顿
 //        new Thread(){
 //            @Override
@@ -169,11 +171,11 @@ public class MainActivity extends AppCompatActivity implements OnFeedShowCallBac
         getFPS();
 
         //blockcanary卡顿监控
-        try{
-            Thread.currentThread().sleep(2000);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+//        try{
+//            Thread.currentThread().sleep(2000);
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
 
 
         // 以下代码是为了演示业务不正常场景下的监控
