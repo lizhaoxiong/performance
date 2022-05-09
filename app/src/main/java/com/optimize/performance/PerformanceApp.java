@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.os.Debug;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Parcel;
@@ -113,6 +114,8 @@ public class PerformanceApp extends Application {
     public void onCreate() {
         super.onCreate();
 
+        Debug.startMethodTracing("APP");
+
         MMKV.initialize(PerformanceApp.this);
         MMKV.defaultMMKV().encode("times",100);
 
@@ -139,6 +142,9 @@ public class PerformanceApp extends Application {
         dispatcher.await();
 
         LaunchTimer.endRecord();
+
+        Debug.stopMethodTracing();
+
 
 //        DexposedBridge.hookAllConstructors(ImageView.class, new XC_MethodHook() {
 //            @Override
