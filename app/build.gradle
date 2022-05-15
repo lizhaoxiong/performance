@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
-apply plugin: 'android-aspectjx'
-apply plugin: 'me.ele.lancet'
+apply plugin: 'kotlin-android'
+//apply plugin: 'me.ele.lancet'
 
 android {
     compileSdkVersion 28
@@ -74,7 +74,7 @@ dependencies {
     implementation 'com.facebook.stetho:stetho-okhttp3:1.5.0'
 
 
-    implementation 'org.aspectj:aspectjrt:1.8.+'
+    implementation 'org.aspectj:aspectjrt:1.9.6'
 
     implementation 'com.github.tiann:epic:0.11.2'
 
@@ -87,11 +87,15 @@ dependencies {
 
 
     implementation('com.aliyun.ams:alicloud-android-httpdns:1.1.7@aar') {
-        transitive true
+        exclude(module:'alicloud-android-utdid')
     }
-    compileOnly 'me.ele:lancet-base:1.0.4'
+//    compileOnly 'me.ele:lancet-base:1.0.6'
 
     implementation 'com.github.markzhai:blockcanary-android:1.5.0'
 
     implementation 'com.github.anrwatchdog:anrwatchdog:1.4.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
 }

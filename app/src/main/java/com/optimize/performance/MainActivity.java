@@ -167,7 +167,7 @@ public class MainActivity extends AppCompatActivity implements OnFeedShowCallBac
             MyLocationStyle myLocationStyle = new MyLocationStyle();
             mLoacationItems.add(myLocationStyle);
         }
-        getNews();
+//        getNews();
         getFPS();
 
         //blockcanary卡顿监控

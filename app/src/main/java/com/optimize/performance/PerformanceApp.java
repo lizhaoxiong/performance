@@ -52,7 +52,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import cn.jpush.android.api.JPushInterface;
-import de.robv.android.xposed.DexposedBridge;
+//import de.robv.android.xposed.DexposedBridge;
 import de.robv.android.xposed.XC_MethodHook;
 
 public class PerformanceApp extends Application {
